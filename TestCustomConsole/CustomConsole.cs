@@ -1,100 +1,58 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-namespace CustomConsole
+using CustomConsole;
+//using Console = CustomConsole._Console;
+namespace TestCustomConsole
 {
-    public static class _Console
+    internal class Program
     {
-        #region Most used Console methods
-        public static int Read() { return Console.Read(); }
-        public static string ReadLine() { return Console.ReadLine(); }
-        public static void Clear() { Console.Clear(); }
-        public static void ResetColor() { Console.ResetColor(); }
-        #endregion
-
-        public enum Color
+        static void Main(string[] args)
         {
-            // Defaults
-            Red,
-            Green,
-            Gray,
-            Blue,
-            Yellow,
-            Cyan,
-            Magenta,
-            White,
-            Black,
+            _Console.WriteLine("Examples");
+            _Console.WriteLine();
 
-            // Named
-            TextMuted,
-            TextInfo,
-            TextDebug,
-            TextSuccess,
-            TextWarning,
-            TextDanger,
+            _Console.WriteLine("Example: default colors");
+            _Console.WriteLine("Red           ", _Console.Color.Red);
+            _Console.WriteLine("Green         ", _Console.Color.Green);
+            _Console.WriteLine("Gray          ", _Console.Color.Gray);
+            _Console.WriteLine("Blue          ", _Console.Color.Blue);
+            _Console.WriteLine("Yellow        ", _Console.Color.Yellow);
+            _Console.WriteLine("Cyan          ", _Console.Color.Cyan);
+            _Console.WriteLine("Magenta       ", _Console.Color.Magenta);
+            _Console.WriteLine("White         ", _Console.Color.White);
+            _Console.WriteLine("Black         ", _Console.Color.Black);
+            _Console.WriteLine();
 
-            // With Backgrond
-            BgMuted,
-            BgInfo,
-            BgDebug,
-            BgSuccess,
-            BgWarning,
-            BgDanger
-        }
+            _Console.WriteLine("Example: named colors");
+            _Console.WriteLine("TextMuted     ", _Console.Color.TextMuted);
+            _Console.WriteLine("TextInfo      ", _Console.Color.TextInfo);
+            _Console.WriteLine("TextDebug     ", _Console.Color.TextDebug);
+            _Console.WriteLine("TextSuccess   ", _Console.Color.TextSuccess);
+            _Console.WriteLine("TextWarning   ", _Console.Color.TextWarning);
+            _Console.WriteLine("TextDanger    ", _Console.Color.TextDanger);
+            _Console.WriteLine();
 
-        public static void WriteLine(string text = "", Color color = Color.Gray)
-        {
-            _Write(text, true, color);
-        }
+            _Console.WriteLine("Example: color with background");
+            _Console.WriteLine("BgMuted       ", _Console.Color.BgMuted);
+            _Console.WriteLine("BgInfo        ", _Console.Color.BgInfo);
+            _Console.WriteLine("BgDebug       ", _Console.Color.BgDebug);
+            _Console.WriteLine("BgSuccess     ", _Console.Color.BgSuccess);
+            _Console.WriteLine("BgWarning     ", _Console.Color.BgWarning);
+            _Console.WriteLine("BgDanger      ", _Console.Color.BgDanger);
+            _Console.WriteLine();
 
-        public static void Write(string text = "", Color color = Color.Gray)
-        {
-            _Write(text, false, color);
-        }        
+            _Console.WriteLine("Example: inline colors");
+            _Console.Write("TextSuccess   ", _Console.Color.TextSuccess);
+            _Console.WriteLine("BgSuccess  ", _Console.Color.BgSuccess);
+            _Console.Write("TextDanger    ", _Console.Color.TextDanger);
+            _Console.WriteLine("BgDanger   ", _Console.Color.BgDanger);
 
-        private static void _Write(string text = "", bool returnCarriage = true, Color color = Color.Gray)
-        {
-            Console.ForegroundColor = GetColor(color)[0];
-            Console.BackgroundColor = GetColor(color)[1];
-            Console.Write(text);
-            Console.ResetColor();
+            _Console.WriteLine();
+            _Console.WriteLine("end");
 
-            if (returnCarriage)
-                Console.WriteLine();
-        }
-
-        private static ConsoleColor[] GetColor(Color color)
-        {
-            switch (color)
-            {
-                case Color.Red: return new[] { ConsoleColor.Red, ConsoleColor.Black };
-                case Color.Green: return new[] { ConsoleColor.Green, ConsoleColor.Black };
-                case Color.Gray: return new[] { ConsoleColor.Gray, ConsoleColor.Black };
-                case Color.Blue: return new[] { ConsoleColor.Blue, ConsoleColor.Black };
-                case Color.Yellow: return new[] { ConsoleColor.Yellow, ConsoleColor.Black };
-                case Color.Cyan: return new[] { ConsoleColor.Cyan, ConsoleColor.Black };
-                case Color.Magenta: return new[] { ConsoleColor.Magenta, ConsoleColor.Black };
-                case Color.White: return new[] { ConsoleColor.White, ConsoleColor.Black };
-                case Color.Black: return new[] { ConsoleColor.Black, ConsoleColor.Black };
-
-                case Color.TextMuted: return new[] { ConsoleColor.DarkGray, ConsoleColor.Black };
-                case Color.TextInfo: return new[] { ConsoleColor.Cyan, ConsoleColor.Black };
-                case Color.TextDebug: return new[] { ConsoleColor.Gray, ConsoleColor.Black };
-                case Color.TextSuccess: return new[] { ConsoleColor.Green, ConsoleColor.Black };
-                case Color.TextWarning: return new[] { ConsoleColor.Yellow, ConsoleColor.Black };
-                case Color.TextDanger: return new[] { ConsoleColor.Red, ConsoleColor.Black };
-
-                case Color.BgMuted: return new[] { ConsoleColor.White, ConsoleColor.Gray };
-                case Color.BgInfo: return new[] { ConsoleColor.White, ConsoleColor.Cyan };
-                case Color.BgDebug: return new[] { ConsoleColor.DarkGray, ConsoleColor.Gray };
-                case Color.BgSuccess: return new[] { ConsoleColor.White, ConsoleColor.Green };
-                case Color.BgWarning: return new[] { ConsoleColor.Black, ConsoleColor.Yellow };
-                case Color.BgDanger: return new[] { ConsoleColor.White, ConsoleColor.Red };
-
-                default: return new[] { ConsoleColor.Gray, ConsoleColor.Black };
-            }
+            _Console.ReadLine();
         }
     }
 }
