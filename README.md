@@ -4,6 +4,15 @@ C# Class to prints colored output.
 ## Installation
 Copy file 'CustomConsole.cs' into your project and include it.
 
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using CustomConsole; // <-- include class
+
+```
+
 ## Example: default colors
 ```c#
 _Console.WriteLine("Red           ", _Console.Color.Red);
